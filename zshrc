@@ -9,12 +9,11 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/home/cecil/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# Set name of the theme to load --- if set to "random", it will# load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="ys"
+ZSH_THEME="agnoster"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -70,6 +69,7 @@ ZSH_THEME="ys"
 # fpath+=~/.zfunc
 plugins=(
   git
+  autojump
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -103,6 +103,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias my_sync_push="rsync -avzu --progress ~/Dropbox/Cecil zc1291@access.cims.nyu.edu:/home/zc1291/"
+
+alias my_sync_pull="rsync -avzu --progress zc1291@access.cims.nyu.edu:/home/zc1291/Cecil ~/Dropbox/"
+
+alias my_cims="ssh zc1291@access.cims.nyu.edu"
+
 # pip zsh completion start
 function _pip_completion {
   local words cword
@@ -114,10 +120,15 @@ function _pip_completion {
 }
 compctl -K _pip_completion pip
 # pip zsh completion end
-
-
+#if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+#        source ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+#fi
 
 export DISABLE_AUTO_TITLE=true
+export PETSC_DIR=$HOME/sfw/petsc/3.10.5
+export PETSC_ARCH=sierra-opt
+export EDITOR=vim
+alias vi="vim"
 
 bar="
 
@@ -127,7 +138,9 @@ bar="
  ███╔╝  ██╔══██║██╔══╝      ██║     ██╔══██║██╔══╝  ██║╚██╗██║
 ███████╗██║  ██║███████╗    ╚██████╗██║  ██║███████╗██║ ╚████║
 ╚══════╝╚═╝  ╚═╝╚══════╝     ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝
-                                                              
+
 "
 
 echo "\033[0;37m" $bar "\033[0m"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
